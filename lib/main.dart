@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 
 main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  List<String> _champs = ['Champs'];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,14 +29,18 @@ class MyApp extends StatelessWidget {
                 child: Text('Añadir Campeón'),
               ),
             ),
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Image.asset('assets/Sylas.jpg'),
-                  Text('Sylas'),
-                ],
-              ),
-            ),
+            Column(
+              children: _champs
+                  .map((element) => Card(
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset('assets/Sylas.jpg'),
+                            Text(element)
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            )
           ],
         ),
       ),
